@@ -18,4 +18,8 @@ public class PinSc : MonoBehaviour
     {
         transform.localPosition = defPos + Vector3.up*Mathf.Sin(a)*c + Vector3.right*Mathf.Cos(a)*c;
     }
+
+    void trigPin(){
+        
+    }
 }
