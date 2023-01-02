@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
 
-        if(hit.transform.gameObject.CompareTag("Pin"))
+        if(hit.transform != null && hit.transform.gameObject.CompareTag("Pin"))
             hit.transform.parent.GetComponent<PinSc>().trig();
         else
             Debug.Log("Clicked to " + hit.transform.name);
