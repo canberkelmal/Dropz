@@ -17,16 +17,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         cam = GameObject.Find("Main Camera");
-        Balls = GameObject.Find("Balls");
-        
+        Balls = GameObject.Find("Balls");        
     }
+    
+    void Update(){
+        if(Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Triggered");
+            ClickDedector();
+        }
+
+        InputController();
+    }
+
     void FixedUpdate()
     {
-        if(Input.GetMouseButtonDown(0))
-            ClickDedector();
-
         CamController();
-        InputController();
         
     }
 
