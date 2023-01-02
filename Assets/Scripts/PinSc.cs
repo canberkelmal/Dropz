@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class PinSc : MonoBehaviour
 {
-    public float c = 0f;
-    public float a = 0f;
-    Vector3 defPos;
+    public float speed = 1f;
+    public GameObject pin;
+    public bool state = false;
+    Vector3 defPos, targetPos;
     // Start is called before the first frame update
     void Start()
     {
-        defPos = transform.localPosition - Vector3.up*c;
+        pin = transform.GetChild(0).gameObject;
+        defPos = pin.transform.localPosition;
+        targetPos = transform.GetChild(1).transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.localPosition = defPos + Vector3.up*Mathf.Sin(a)*c + Vector3.right*Mathf.Cos(a)*c;
+        ChangeState();
     }
 
-    void trigPin(){
-        
+    void ChangeState(){
+        pin.transform.position = state ? Vector3.MoveTowards(pin.transform.position, defPos, speed * Time.deltaTime) : 
+                                         Vector3.MoveTowards(pin.transform.position, targetPos, speed * Time.deltaTime);
+    }
+
+    public void trig(){
+        state = !state;
     }
 }
