@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfBalls: 5
+  plusEffect: {fileID: 1568690613299528, guid: 935aabf6f6492094b92920088f99632a, type: 3}
