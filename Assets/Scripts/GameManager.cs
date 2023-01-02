@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
             ClickDedector();
 
         CamController();
+        InputController();
         
     }
 
@@ -34,8 +36,12 @@ public class GameManager : MonoBehaviour
 
         if(hit.transform != null && hit.transform.gameObject.CompareTag("Pin"))
             hit.transform.parent.GetComponent<PinSc>().trig();
-        else
+
+        else if(hit.transform != null)
             Debug.Log("Clicked to " + hit.transform.name);
+
+        else
+            Debug.Log("Missclick!");
         
     }
 
@@ -50,5 +56,24 @@ public class GameManager : MonoBehaviour
 
         tempCamZ = Mathf.Lerp(cam.transform.position.y, avY, camFallowSens*Time.deltaTime);
         cam.transform.position = new Vector3(0, tempCamZ, camZ);
+    }
+
+    void InputController()
+    {
+        //Reloads the current scene when pressed "R" on keyboard
+        if(Input.GetKeyDown(KeyCode.R))
+            reloadCurrentScene();    
+    }
+
+    public void reloadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
+    }
+
+    public void loadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1;
     }
 }
