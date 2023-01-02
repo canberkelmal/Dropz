@@ -6,13 +6,13 @@ public class PinSc : MonoBehaviour
 {
     public float speed = 1f;
     public GameObject pin;
-    public bool state = false;
+    public bool state = true;
     Vector3 defPos, targetPos;
     // Start is called before the first frame update
     void Start()
     {
         pin = transform.GetChild(0).gameObject;
-        defPos = pin.transform.localPosition;
+        defPos = pin.transform.position;
         targetPos = transform.GetChild(1).transform.position;
     }
 

@@ -21,8 +21,21 @@ public class GameManager : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if(Input.GetMouseButtonDown(0))
+            ClickDedector();
 
         CamController();
+        
+    }
+
+    private void ClickDedector()
+    {
+        RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
+
+        if(hit.transform.gameObject.CompareTag("Pin"))
+            hit.transform.parent.GetComponent<PinSc>().trig();
+        else
+            Debug.Log("Clicked to " + hit.transform.name);
         
     }
 
